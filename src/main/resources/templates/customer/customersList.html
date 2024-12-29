@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/layout :: head('一覧')">
+</head>
+
+<body>
+<div th:replace="fragments/layout :: navbar"></div>
+<div class="container-fluid">
+  <h5>一覧</h5>
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+          <th width="10%">ID</th>
+          <th width="70%">名前</th>
+          <th width="20%">削除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="customer:${customerList}">
+          <td th:text="${customer.id}"></td>
+          <td>
+            <a th:text="${customer.name}" th:href="@{customers/{id}/update(id=${customer.id})}">
+            </a>
+          </td>
+          <td>
+            <a th:href="@{customers/{id}/delete(id=${customer.id})}" onClick="return window.confirm('削除してよろしいですか？')">
+              <i class="far fa-trash-alt fa-lg" aria-hidden=”true”></i>
+            </a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>
